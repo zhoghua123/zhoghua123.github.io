@@ -105,7 +105,7 @@ _drafts/
 
 以上是我的`.gitignore`文件内容。
 
-在`_posts`下的符合`YYYY-MM-DD-xxxxxx.md`的文件，都会被Jekyll认定为博客内容。我在`_posts`下又新建了一些文件夹，主要是方便自己本地管理博客。
+在`_posts`下的符合`YYYY-MM-DD-xxxxxx.md`的文件，都会被Jekyll认定为博客内容。我在`_posts`下又新建了一些文件夹，主要是方便自己本地管理博客。上面的xxxxxx用英文,不要用汉字
 
 在上述这些文件中，必须先定义一些配置项，例如这篇博客的md文件中，开头是这样的：
 
