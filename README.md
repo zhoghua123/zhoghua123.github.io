@@ -17,17 +17,3 @@
 - 三栏布局 (bootstrap-based分支，基于Bootstrap)
 - 单栏布局（first-ui分支，基于Bootstrap）
 
-在_posts中添加md文件规则:
-
-1. 文件命名以日期格式开头: 2017-11-10
-2. 复制以下内容:
-
-```
----
-layout: post
-title: React 学习 - 开发环境搭建
-category: 技术
-tags: React
-keywords: React
----
-```
