@@ -11,6 +11,13 @@ description:
 
 ![七牛操作流](http://7u2ho6.com1.z0.glb.clouddn.com/tool-qiniu-workflow.gif)
 
+## 使用GitHub做免费不限流量图床
+1. 创建远程仓库
+2. 将图片放到仓库中
+3. 在远程仓库中打开相应图片
+4. 复制该地址
+5. 将地址中的blob改为raw即可
+6. 其实引用时会将改地址转化为`https://raw.githubusercontent.com/zhoghua123/imgsBed/master/123.png`,因此直接使用这个地址即可
 ## 图床神器iPic
 [图床神器iPic的使用方法](https://toolinbox.net/iPic)
 
