@@ -258,7 +258,46 @@ git add xxx
 git commit -m "xxx"
 git push
 ```
+ 
+## jekyll安装
+### 需要环境支持
+Ruby，Mac自带，如果没有请安装
 
+### 安装Gem
+Gem是Ruby第三方插件管理器
+
+下载Gem到本地后，在终端输入如下代码
+
+```
+## 检查gem版本
+gem -v
+## 更新Gem(提示权限)
+gem update --system
+
+```
+[官网安装教程:](https://rubygems.org/pages/download)
+### 安装jekyll
+
+```
+安装jekyll(提示权限)
+$ gem install jekyll
+安装成功之后，查看版本号
+$ jekyll -v
+```
+### 运行 `jekyll serve `常见错误
+1. 错误1:
+
+   Deprecation: The 'gems' configuration option has been renamed to 'plugins'. Please update your config file accordingly.
+   
+   解决:配置文件_config.yml中，使用了 plugins 的配置项，应该是用plugins替换掉gems。
+2. 错误2:
+
+   Dependency Error: Yikes! It looks like you don't have ...(这里说的是你缺少的东西,比如:`jekyll-seo-tag`) or....
+ 
+ 解决: 缺啥补啥
+ 
+ 执行代码: `gem install jekyll-seo-tag`  即可解决
+ 
 ## 其他
 我觉得自己的这个主题设定的算是比较好修改和移植的了，如果大家有什么问题，可以尽管问。
 
