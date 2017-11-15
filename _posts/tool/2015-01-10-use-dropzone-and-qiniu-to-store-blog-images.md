@@ -11,6 +11,9 @@ description:
 
 ![七牛操作流](http://7u2ho6.com1.z0.glb.clouddn.com/tool-qiniu-workflow.gif)
 
+## 图床神器iPic
+[图床神器iPic的使用方法](https://toolinbox.net/iPic)
+
 ## 设置七牛帐号
 
 > [七牛](http://www.qiniu.com)是国内口碑不错的一个云存储为主的公司。它的特点应该就在图片存储上，有非常方便的上传SDK和图片处理流，用来作为博客图床非常合适，而且价格不贵，每月有免费的10G流量。
