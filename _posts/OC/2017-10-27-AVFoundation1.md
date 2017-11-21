@@ -18,7 +18,7 @@ AVFoundation的强大之处我在这里就不一一赘述了.我也看了有人�
 ##### 捕捉类:
 就是AVFoundation框架中带Capture(捕捉)字样的所有类,这些类很强大,可以实现录视频/语音/拍照功能  
 根据苹果官方文档常见的捕捉类的关系是这样的,如下图:
-![苹果官方图片1.png](http://upload-images.jianshu.io/upload_images/2933617-a1cbcf394a135901.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![苹果官方图片1.png](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/Foundation1.png)
 下面就一一讲述一下这几个类:
 
 ##### AVCaptureDevice
@@ -100,7 +100,7 @@ capture:捕捉的意思
 从AVCaptureInput接收的媒体流通过许多连接对象(**AVCaptureConnection**)连接到AVCaptureOutput呈现的.**一个AVCaptureOutput对象在他创建的时候时没有任何连接的(AVCaptureConnection)**,当AVCaptureOutput对象被添加到捕捉会话(AVCaptureSession)时,许多连接(connections)被创建用于映射捕捉会话(sessions)的输入到输出(也就是说,有了这些连接对象才能够使输入得到的数据映射到输出)
 AVCaptureConnection的作用苹果官方的图片如下:
 
-![苹果官方图片2.png](http://upload-images.jianshu.io/upload_images/2933617-d3b08bd8f8cd5d52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![苹果官方图片2.png](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/Foundation2.png)
 **概念:**     
 AVCaptureOutput的一个抽象子类，用于将捕获的媒体数据写入文件到某个路径下。该类有两个子类如下:  
 
@@ -172,12 +172,12 @@ FlashMode:AVCaptureDevice的属性
  预览图层,CALayer 的子类，自动显示相机产生的实时图像     
  当打开摄像头的时候,我们会看到手机像透明的一样展示外面的图像,其实不是透明看到的,而是摄像头搜集外面的图像数据,一点一点实时的展示在这个图层上没有这个图层时,就只有该控制器的View显示  
  以上概念讲完,下面我梳理了一下他们之间的关系如下图:
- ![捕捉类关系图.png](http://upload-images.jianshu.io/upload_images/2933617-f140b45119a237fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+ ![捕捉类关系图.png](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/Foundation3.png)
  
 ### 代码演示:    
 上面讲了一堆概念,下面我们通过写一个模仿钉钉打卡拍照的demo来学会使用上面的捕捉类:(该demo适配iOS>10.0)    
 界面分析如下: 
-![Snip20171027_7.png](http://upload-images.jianshu.io/upload_images/2933617-6726c9a4e251110b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Snip20171027_7.png](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/Foundation4.png)
 > 原理:
 也就是说打开摄拍照界面时,往上面随便添加你想要的东西,只要再生成图片时,使用位图将这些你添加的东西画到拍照的图片上就行了
 
