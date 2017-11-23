@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 循序渐进学AVFoundation-自定义相机
-category: Objective-C
+category: iOS开发
 tags: AVFoundation
 description: AVFoundation
 ---

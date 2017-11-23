@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CollectionView的详细使用(三)
-category: Objective-C
+category: iOS开发
 tags: CollectionView
 description: CollectionView的详细使用
 ---
