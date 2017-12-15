@@ -24,6 +24,7 @@ description: Foundation框架
         ```
         [NSString stringWithString@""]
      [NSString stringWithFormat:@""];
+     .......
         ```
 2. OC字符串与C语言字符串
     1. C字符串 --> OC字符串
@@ -39,7 +40,7 @@ description: Foundation框架
 3. 字符串的读写
     1. URL
         1. 指资源路径
-        2. 组成: 协议头://路径
+        2. 组成: 协议头://域名或ip:port/路径
         3.  协议头:
             1. file(本地文件)
             2. ftp(ftp服务器上)
@@ -48,7 +49,7 @@ description: Foundation框架
     2.  NSUTF8StringEncoding:用到中文就可以用这种编码
     
     3. 从文件中读取字符串
-        1. 这个方法只支持File(只能读取文件)
+        1. 这个方法只支持File(只能读取文件,并且是file本地的)
         
             ```
             NSString *s5 = [[NSString alloc] initWithContentsOfFile:@"/Users/apple/Desktop/1.txt" encoding:NSUTF8StringEncoding error:nil];
@@ -79,5 +80,25 @@ description: Foundation框架
         NSURL *url = [NSURL fileURLWithPath:@"/Users/apple/Desktop/my2.txt"];
         [str writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:nil];
         ```
+        
+## NSMutableString
+1. `NSString`的子类,继承自`NSString`
+2. `NSMutableString`为可变字符串,`NSString`为不可变字符串
+
+```
+ //1.创建
+    NSMutableString *s1 = [NSMutableString stringWithFormat:@"my age is 10"];
+    //2. 拼接内容到s1的后面
+    [s1 appendString:@" 11 12"];
+    //3.删除is
+    // 获取is的范围
+    NSRange range = [s1 rangeOfString:@"is"];
+    [s1 deleteCharactersInRange:range];
+    
+    //不可变字符串
+    NSString *s2 = [NSString stringWithFormat:@"age is 10"];
+    NSString *s3 = [s2 stringByAppendingString:@" 11 12"];
+    NSLog(@"s1=%@, s2=%@", s1, s2);
+```
 
 
