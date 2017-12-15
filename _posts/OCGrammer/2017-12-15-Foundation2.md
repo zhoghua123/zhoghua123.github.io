@@ -149,4 +149,12 @@ description: Foundation框架
     
         ```
 
+## 字典
+### NSDictionary
+1. 里面存储的东西都是键值对
+
+    ```
+     key ----> value
+     索引 ----> 文字内容
+    ``` 
 
