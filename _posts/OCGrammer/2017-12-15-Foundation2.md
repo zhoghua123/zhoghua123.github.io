@@ -5,7 +5,8 @@ category: OC语法
 tags: OC语法
 description: Foundation框架
 ---
-## NSArray
+##  数组
+### NSArray
 1. OC数组不能存放nil值
 2. OC数组只能存放OC对象、不能存放非OC对象类型，比如int、struct、enum等
 3. NSArray的创建
@@ -104,4 +105,48 @@ description: Foundation框架
         }
     }
     ```
+    
+### NSMutableArray
+1. NSArray的子类,继承自NSArray
+2. NSMutableArray为可变数组,NSArray为不可变数组
+3. 创建
+    
+    ```
+     //创建空数组
+    NSMutableArray *array0 = [NSMutableArray array];
+    //创建2个元素的数组
+    NSMutableArray *array = [NSMutableArray arrayWithObjects:@"rose", @"jim", nil];
+    NSMutableArray *array1 = [NSMutableArray arrayWithArray:array];
+    ```
+4. 添加元素
+    
+    ```
+     [array addObject:[[Person alloc] init]];
+    [array addObject:@"jack"];
+    ```
+5. 删除元素
+    
+    ```
+    // 删除指定的对象
+     [array removeObject:@"jack"];
+    [array removeObjectAtIndex:0];
+    // 删除全部元素
+    [array removeAllObjects];
+    // 错误写法
+    // [array addObject:nil];
+    ```
+6. 常见错误
+    1. `@[]` 只创建不可变数组`NSArray`
+    
+        ```
+        //NSMutableArray *array = @[@"jack", @"rose"];
+        ```
+    2. 不可变数组的添加
+        
+        ```
+        //NSArray *array = @[@"jack", @"rose"];
+        // [array addObject:@"jim"];
+    
+        ```
+
 
