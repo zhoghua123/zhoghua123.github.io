@@ -8,7 +8,7 @@ description: Foundation框架
 ##  数组
 ### NSArray
 1. OC数组不能存放nil值
-2. OC数组只能存放OC对象、不能存放非OC对象类型，比如int、struct、enum等
+2. OC数组只能存放OC对象、不能存放非OC对象类型，比如int、struct、enum等,也不能存放nil
 3. NSArray的创建
     
     ```
@@ -157,7 +157,8 @@ description: Foundation框架
      key ----> value
      索引 ----> 文字内容
     ``` 
-2. 创建
+2. 字典的value只能存放OC对象、不能存放非OC对象类型，比如int、struct、enum等,也不能存放nil
+3. 创建
 
     ```
     //一个键值对
@@ -174,13 +175,13 @@ description: Foundation框架
     //快捷创建方式
     NSDictionary *dict3 = @{@"name" : @"jack", @"address" : @"北京"};
     ```
-3. 字典的取值
+4. 字典的取值
     
     ```
      id obj = [dict objectForKey:@"name"];
      id obj1 = dict[@"name"];
     ```
-4. 返回的是键值对的个数/返回字典的所有key
+5. 返回的是键值对的个数/返回字典的所有key
     
     ```
      // 返回的是键值对的个数
@@ -274,6 +275,7 @@ description: Foundation框架
     NSSet --->        (Hash)Set
     NSDictionary ---> (Hash)Map
     ```
+    
 ## Set
 ### NSSet
 1. NSSet和NSArray的对比
