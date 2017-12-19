@@ -361,6 +361,20 @@ description: Foundation框架
     NSString *s2 = [NSString stringWithFormat:@"age is 10"];
     NSString *s3 = [s2 stringByAppendingString:@" 11 12"];
     NSLog(@"s1=%@, s2=%@", s1, s2);
+    
+    //可变字符串替换
+    NSMutableString *strM = [NSMutableString stringWithFormat:@"www.520it.com.520"];
+    // 要求将字符串中的520替换为530
+    // 注意: 如果是调用NSString的字符串替换方法, 不会修改原有字符串, 而是生成一个新的字符串
+//    NSString *newStr =[strM stringByReplacingOccurrencesOfString:@"520" withString:@"530"];
+    // OccurrencesOfString: 需要替换的字符串
+    // withString: 用什么替换
+    // options: 替换时的搜索方式
+    // range: 搜索的范围
+    // 返回值: 代表替换了多少个字符串
+    NSUInteger count = [strM replaceOccurrencesOfString:@"520" withString:@"530" options:0 range:NSMakeRange(0, strM.length)];
+    NSLog(@"strM = %@", strM);
+    NSLog(@"count = %lu", count);
 ```
 
 
