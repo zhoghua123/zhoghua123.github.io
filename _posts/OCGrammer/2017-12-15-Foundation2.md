@@ -105,7 +105,57 @@ description: Foundation框架
         }
     }
     ```
+8. NSArray排序
+
+    ```
+       //方法一:
+    NSArray *arr = @[@10, @20, @5, @7, @15];
+    NSLog(@"排序前: %@", arr);
+    // 注意: 想使用compare方法对数组中的元素进行排序, 那么数组中的元素必须是Foundation框架中的对象, 也就是说不能是自定义对象
+    NSArray *newArr = [arr sortedArrayUsingSelector:@selector(compare:)];
+    NSLog(@"排序后: %@", newArr);
+
+    //方法2:自定义对象排序
+    Person *p1 = [Person new];
+    p1.age = 10;
+    Person *p2 = [Person new];
+    p2.age = 20;
+    Person *p3 = [Person new];
+    p3.age = 5;
+    Person *p4 = [Person new];
+    p4.age = 7;
+    NSArray *arr = @[p1, p2, p3, p4];
+    NSLog(@"排序前: %@", arr);
+    // 按照人的年龄进行排序
+    // 不能使用compare:方法对自定义对象进行排序
+//    NSArray *newArr = [arr sortedArrayUsingSelector:@selector(compare:)];
     
+    // 该方法默认会按照升序排序
+    NSArray *newArr = [arr sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(Person *obj1, Person *obj2) {
+        // 每次调用该block都会取出数组中的两个元素给我们
+        return obj1.age > obj2.age;
+        //降序
+//        return obj1.age < obj2.age;
+    }];
+    NSLog(@"排序后: %@", newArr);
+    ```   
+8. NSrray的读写
+    1. 其实如果将一个数组写入到文件中之后, 本质是写入了一个XML文件
+    2. 在iOS开发中一般情况下我们会将XML文件的扩展名保存为plist
+    3. writeToFile只能写入数组中保存的元素都是Foundation框架中的类创建的对象, 如果保存的是自定义对象那么不能写入
+    4. 应用:
+        
+        ```
+        // 1.将数组写入到文件中
+        NSArray *arr = @[@"lnj", @"lmj", @"jjj"];
+        BOOL flag = [arr writeToFile:@"/Users/xiaomage/Desktop/abc.plist" atomically:YES];
+        NSLog(@"flag = %i", flag);
+        
+         // 2.从文件中读取一个数组
+        NSArray *newArray = [NSArray arrayWithContentsOfFile:@"/Users/xiaomage/Desktop/abc.plist"];
+        NSLog(@"%@", newArray);
+        ```
+ 
 ### NSMutableArray
 1. NSArray的子类,继承自NSArray
 2. NSMutableArray为可变数组,NSArray为不可变数组
@@ -241,6 +291,14 @@ description: Foundation框架
     }
 
     //第二种遍历
+     // 如何通过forin遍历字典, 会将所有的key赋值给前面的obj
+    for (NSString *key in dict) {
+//        NSLog(@"%@", key);
+        NSString *value = dict[key];
+        NSLog(@"key = %@, value = %@", key, value);
+
+    }
+    //第三种遍历
     [dict enumerateKeysAndObjectsUsingBlock:
      ^(id key, id obj, BOOL *stop) {
          NSLog(@"%@ - %@", key, obj);
@@ -267,7 +325,22 @@ description: Foundation框架
     NSLog(@"%@", persons[1][@"qq"]);
     
     ```
-9. OC与Java
+9. 字典文件读写
+
+    ```
+    NSDictionary *dict = @{@"name":@"lnj", @"age":@"30", @"height":@"1.75"};
+    // XML 扩展名plist
+    [dict writeToFile:@"/Users/xiaomage/Desktop/info.plist" atomically:YES];
+    
+    // 注意: 字典和数组不同, 字典中保存的数据是无序的
+    NSDictionary *newDict = [NSDictionary dictionaryWithContentsOfFile:@"/Users/xiaomage/Desktop/info.plist"];
+    NSLog(@"%@", newDict);
+    
+    
+    NSArray *arr = @[@10, @20, @30, @5];
+    [arr writeToFile:@"/Users/xiaomage/Desktop/abc.plist" atomically:YES];
+    ```
+10. OC与Java
     
     ```
      OC                Java
