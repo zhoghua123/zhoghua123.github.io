@@ -250,10 +250,99 @@ description: Foundation框架
         newStr = [newStr substringToIndex:location];
         NSLog(@"newStr = %@", newStr);
         ```
-        
    10. 字符串替换
-            
-         
+   
+        ```
+         // OccurrencesOfString: 要替换谁
+        // withString: 用谁替换
+        // 1.去除空格  2.将&替换为/
+        NSString *str = @"   http:   &&www.   520it.com   &img&lnj.gif   ";
+        // 1.去除空格
+        NSString *newStr = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSLog(@"newStr = |%@|", newStr);
+        NSString *newStr2 = [newStr stringByReplacingOccurrencesOfString:@"&" withString:@"/"];
+        NSLog(@"newStr2 = |%@|", newStr2);
+        
+        
+        // 3.替换首尾
+        //stringByTrimmingCharactersInSet专门用于取出字符串首尾的
+        //3.1 去除首尾空格
+        NSString *str = @"   http:&&www.520it.com&img&lnj.gif   ";
+        //whitespaceCharacterSet 去除首尾空格
+        NSCharacterSet *set = [NSCharacterSet whitespaceCharacterSet];
+        NSString *newStr = [str stringByTrimmingCharactersInSet:set];
+        
+        //3.2 去除字符串首尾的大写
+        NSString *str = @"HTTP://www.520it.com/img/LNJ.GIF";
+        NSCharacterSet *set = [NSCharacterSet uppercaseLetterCharacterSet];
+        NSString *newStr = [str stringByTrimmingCharactersInSet:set];
+        NSLog(@"newStr = |%@|", newStr);
+        ```
+    11. 字符串与路径
+        
+        ```
+        NSString *str = @"User/lnj/Desktop/lnj.txt.jpg";
+        // 1.判断是否是绝对路径
+        // 其实本质就是判断字符串是否以/开头
+        if([str isAbsolutePath])
+        {
+            NSLog(@"是绝对路径");
+        }else{
+            NSLog(@"不是绝对路径");
+        }
+        
+        
+        // 2.获取文件路径中的最后一个目录
+        // 本质就是获取路径中最后一个/后面的内容
+        NSString *newStr = [str lastPathComponent];
+        NSLog(@"%@", newStr);
+        
+        
+        // 3.删除文件路径中的最后一个目录
+        // 本质就是删除最后一个/后面的内容, 包括/也会被删除
+        NSString *newStr = [str stringByDeletingLastPathComponent];
+        NSLog(@"%@", newStr);
+        
+        
+        // 4.给文件路径添加一个目录
+         // 本质就是在字符串的末尾加上一个/ 和指定的内容
+         // 注意: 如果路径后面已经有了/, 那么就不会添加了
+         // 如果路径后面有多个/, 那么会自动删除多余的/, 只保留一个
+         NSString *newStr = [str stringByAppendingPathComponent:@"xmg"];
+         NSLog(@"%@", newStr);
+        
+        
+        // 5.获取路径中文件的扩展名
+        // 本质就是从字符串的末尾开始查找., 截取第一个.后面的内容
+        NSString *newStr = [str pathExtension];
+        NSLog(@"%@", newStr);
+        
+        
+        // 6.删除路径中文件的扩展名
+        // 本质就是从字符串的末尾开始查找.,删除第一个.和.后面的内容
+        NSString *newStr = [str stringByDeletingPathExtension];
+        NSLog(@"%@", newStr);
+        
+        // 7.给文件路径添加一个扩展名
+        // 本质就是在字符串的末尾加上一个.和指定的内容
+        NSString *newStr = [str stringByAppendingPathExtension:@"jpg"];
+        NSLog(@"%@", newStr);
+        ```     
+    12. 字符串的转换
+        
+        ```
+         NSString *str = @"abc";
+        // 1.将字符串转换为大写
+        NSString *newStr = [str uppercaseString];
+        NSLog(@"%@", newStr);
+        // 2.将字符串转换为小写
+        NSString *newStr2 = [newStr lowercaseString];
+        NSLog(@"%@", newStr2);
+        // 3.将字符串的首字符转换为大写
+        NSString *newStr = [str capitalizedString];
+        NSLog(@"%@", newStr);
+        ```
+        
 ## NSMutableString
 1. `NSString`的子类,继承自`NSString`
 2. `NSMutableString`为可变字符串,`NSString`为不可变字符串
