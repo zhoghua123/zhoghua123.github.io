@@ -347,8 +347,8 @@ description: Foundation框架
 1. `NSString`的子类,继承自`NSString`
 2. `NSMutableString`为可变字符串,`NSString`为不可变字符串
 
-```
- //1.创建
+    ```
+     //1.创建
     NSMutableString *s1 = [NSMutableString stringWithFormat:@"my age is 10"];
     //2. 拼接内容到s1的后面
     [s1 appendString:@" 11 12"];
@@ -375,6 +375,6 @@ description: Foundation框架
     NSUInteger count = [strM replaceOccurrencesOfString:@"520" withString:@"530" options:0 range:NSMakeRange(0, strM.length)];
     NSLog(@"strM = %@", strM);
     NSLog(@"count = %lu", count);
-```
+    ```
 
 
