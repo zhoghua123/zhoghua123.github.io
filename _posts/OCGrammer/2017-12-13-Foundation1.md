@@ -125,7 +125,100 @@ description: Foundation框架
         NSURL *url = [NSURL fileURLWithPath:@"/Users/apple/Desktop/my2.txt"];
         [str writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:nil];
         ```
+    7. 字符串比较
         
+        ```
+         NSString *str1 = @"abc";
+    NSString *str2 = @"ABC";
+    
+    
+        // 1.比较两个字符串的"内容"是否相同
+        BOOL flag = [str1 isEqualToString:str2];
+        NSLog(@"flag = %i", flag);
+        
+        // 2.下面这个方法, 是比较两个字符串的"地址"是否相同
+        flag = (str1 == str2);
+        NSLog(@"flag = %i", flag);
+        
+        // 3. 比较字符串的大小(比的是ASCI码值)
+        // NSOrderedAscending  前面的小于后面的
+        // NSOrderedSame,  两个字符串相等
+        // NSOrderedDescending  前面的大于后面的
+        switch ([str1 compare:str2]) {
+            case NSOrderedAscending:
+                NSLog(@"str1小于str2");
+                break;
+            case NSOrderedSame:
+                NSLog(@"str1等于str2");
+                break;
+            case NSOrderedDescending:
+                NSLog(@"str1大于str2");
+                break;
+            default:
+                break;
+        }
+    
+        //4. 忽略大小写进行比较
+        switch ([str1 caseInsensitiveCompare:str2]) {
+            case NSOrderedAscending:
+                NSLog(@"str1小于str2");
+                break;
+            case NSOrderedSame:
+                NSLog(@"str1等于str2");
+                break;
+            case NSOrderedDescending:
+                NSLog(@"str1大于str2");
+                break;
+            default:
+                break;
+        }
+    
+        ```
+    8. 字符串搜索
+        
+        ```
+         NSString *str = @"http://www.520it.com/img/lnj.gif";
+        // 1.判断是否以什么开头
+        // 本质就是从字符串的第一个字符开始匹配, 只要不匹配就返回NO
+        if ([str hasPrefix:@"http://"]) {
+            NSLog(@"是一个URL");
+        }else
+        {
+            NSLog(@"不是一个URL");
+        }
+        
+        // 2.判断是否以什么结尾
+    
+        // 本质就是从字符串的最后一个字符开始匹配, 只要不匹配就返回NO
+        if ([str hasSuffix:@".gif"]) {
+            NSLog(@"动态图片");
+        }else{
+            NSLog(@"不是动态图片");
+        }
+        
+        // 3.判断字符串中是否包含520it.com
+        NSString *str1 = @"abcd";
+        //方法一:
+        // 只要str1中包含该字符串, 那么就会返回该字符串在str1中的起始位置以及该字符串的长度
+        // location从0开始 , length从1开始
+        // 如果str中没有需要查找的字符串, 那么返回的range的length=0, location = NSNotFound
+        NSRange range =  [str1 rangeOfString:@"lnj"];
+    //    if (range.location == NSNotFound) {
+        if (range.length == 0){
+            NSLog(@"str中没有需要查找的字符串");
+        }else{
+            NSLog(@"str中有需要查找的字符串");
+            NSLog(@"location = %lu, length = %lu", range.location, range.length);
+        }
+        //方法二:
+      BOOL isContain =  [str1 containsString:@"a"];
+        ```
+    9. 字符串截取
+        
+        ```
+        
+        ```
+         
 ## NSMutableString
 1. `NSString`的子类,继承自`NSString`
 2. `NSMutableString`为可变字符串,`NSString`为不可变字符串
