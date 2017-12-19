@@ -216,8 +216,43 @@ description: Foundation框架
     9. 字符串截取
         
         ```
+         //截取出"小码哥"
+         NSString *str = @"<head>小码哥</head>";
+        // 1.动态获取截取的起始位置
+        NSUInteger location = [str rangeOfString:@">"].location + 1;
+        // 2.动态获取截取的长度
+        // 注意:rangeOfString是从左至右的开始查找, 只要找到就不找了
+        //从右往左开始
+    //    NSUInteger length = [str rangeOfString:@"<" options:NSBackwardsSearch].location - location;
+        NSUInteger length = [str rangeOfString:@"</"].location - location;
+        NSLog(@"location = %lu, length = %lu", location, length);
+        // 3. 创建range
+        NSRange range = NSMakeRange(location, length);
+        //3. 截取
+        NSString *newStr = [str substringWithRange:range];
+        NSLog(@"str = %@", str);
+        NSLog(@"newStr = %@", newStr);
         
+        // 从什么地方开始截取, 一直截取到最后
+        NSString *newStr = [str substringFromIndex:6];
+        // 从开头开始截取, 一直截取到什么位置
+        NSString *newStr = [str substringToIndex:6];
+        
+        //举例使用
+        NSLog(@"str = %@", str);
+        NSUInteger location = [str rangeOfString:@">"].location + 1;
+        //小码哥</head>
+        NSString *newStr = [str substringFromIndex:location];
+        NSLog(@"newStr = %@", newStr);
+        location = [newStr rangeOfString:@"</"].location;
+        //小码哥
+        // 改变了指针的指向, 并不是修改了原来的字符串
+        newStr = [newStr substringToIndex:location];
+        NSLog(@"newStr = %@", newStr);
         ```
+        
+   10. 字符串替换
+            
          
 ## NSMutableString
 1. `NSString`的子类,继承自`NSString`
