@@ -21,8 +21,33 @@ description: UITableView
 
 ## 使用注意
 1. 静态表格只能用在stroyBoard实现，xib中无法使用。
+
 ## 静态单元格操作步骤
 1. 创建一个SB(Storyboard),在sb中拖入一个UITableViewController
 2. 代码自定义一个继承自UITableViewController的控制器,并这这个类设置为SB中那个控制器的类,如下图:  
-    ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/tableview1.png)
+    ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/tableView1.png)
+3. 然后将tableView的cell类型设置为Static Cells。
+ ![图2](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/tableView2.png)
+4. 详细设置
+    1. 点击tableView,可以设置类型(plain/group)
+    2. 点击selection,可以设置该section下cell的行数row/header/footer标题 
+    3. 点击cell可以设置cell的属性,以及搭建内部子控件
+    ![图2](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/tableView3.png)
+5. 代码展示:
+    1. 给SB中设置Storyboard ID 
+    2. 代码加载
+        
+        ```javascript
+        - (IBAction)selectAction:(id)sender {
+        //1.在主资源包中拿到该sb
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"TestTableViewController" bundle:nil];
+        //2. 拿到该sb中的控制器,根据设置的IdentifierID
+        TestTableViewController *VC = [sb instantiateViewControllerWithIdentifier:@"Testvc"];
+        [self presentViewController:VC animated:YES completion:nil];
+        }
+        ```
+        
+        ![图2](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/tableView4.png)
+
+
 
