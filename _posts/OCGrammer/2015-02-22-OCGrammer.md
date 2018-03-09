@@ -6,7 +6,7 @@ tags: OC语法
 description: OC语法
 ---
 
-## 如何创建快速创建代码练兵场
+## 如何快速创建代码练兵场
 1. 创建一个macOS命令行工具项目
     1. 打开xcode->create->macOS->Command Line Tool即可
 2. 在命令行工具项目中创建target
