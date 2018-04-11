@@ -27,9 +27,17 @@ description: 这里主要是列一些优秀的博客
 
 #### [雷纯锋的技术博客](http://blog.leichunfeng.com)
 
-#### [博客1](http://www.cnblogs.com/kenshincui/)
+#### [崔江涛](http://www.cnblogs.com/kenshincui/)
 
-#### [博客1](http://www.cnblogs.com/kenshincui/)
+#### [百度Hi iOS团队技术周报](http://baiduhidevios.github.io)
 
+#### [阿毛的蛋疼地](http://xiangwangfeng.com/)
 
+#### [王中周的技术博客](http://foggry.com/)
+
+#### [土土哥的技术Blog](http://tutuge.me/)
+
+#### [故胤道长](https://www.jianshu.com/p/64e33f9bdc03)
+
+#### [刘坤的技术博客](https://blog.cnbluebox.com/)
 
