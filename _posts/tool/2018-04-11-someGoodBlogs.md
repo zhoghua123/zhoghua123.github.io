@@ -11,6 +11,8 @@ description: 这里主要是列一些优秀的博客
 
 #### [唐巧的博客](http://blog.devtang.com)
 
+#### [孙源的博客](http://blog.sunnyxx.com)
+
 #### [玉令天下的博客](http://yulingtianxia.com)
 
 #### [青玉伏案的博客](http://www.cnblogs.com/ludashi/)
@@ -25,6 +27,9 @@ description: 这里主要是列一些优秀的博客
 
 #### [雷纯锋的技术博客](http://blog.leichunfeng.com)
 
+#### [博客1](http://www.cnblogs.com/kenshincui/)
+
+#### [博客1](http://www.cnblogs.com/kenshincui/)
 
 
 
