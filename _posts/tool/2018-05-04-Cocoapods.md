@@ -171,5 +171,5 @@ description: CocoaPods
     1. 原因：
         1. 就是你的xcode版本和现在CocoaPods 的版本问题不匹配  比如你用xcode8 你的cocoaPods 版本是1.0.1 . 就有可能出现此类问题。因为xcode8需要cocoaPods1.1.0.
     2. 解决方法：
-        1. 就是更新cocoaPods的版本 ，在终端执行如下命令gem install cocoapods --pre，然后在相对应podfile文件所在路径下执行pod install 即可。
+        1. 就是更新cocoaPods的版本 ，在终端执行如下命令: `gem install cocoapods --pre`，然后在相对应podfile文件所在路径下执行`pod install` 即可。
 
