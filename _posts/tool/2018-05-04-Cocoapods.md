@@ -158,3 +158,18 @@ description: CocoaPods
 
     ```
 
+## 常见错误
+1.  RuntimeError - [Xcodeproj] Unknown object version.
+    
+    ```
+    RuntimeError - [Xcodeproj] Unknown object version.
+    /Users/ocean/.rvm/gems/ruby-2.2.2@global/gems/xcodeproj-1.3.0/lib/xcodeproj/project.rb:217:in initialize_from_file' /Users/ocean/.rvm/gems/ruby-2.2.2@global/gems/xcodeproj-1.3.0/lib/xcodeproj/project.rb:102:inopen'
+    /Users/ocean/.rvm/gems/ruby-2.2.2@global/gems/cocoapods-1.0.1/lib/cocoapods/installer/analyzer.rb:695:in block (2 levels) in inspect_targets_to_integrate' /Users/ocean/.rvm/gems/ruby-2.2.2@global/gems/cocoapods-1.0.1/lib/cocoapods/installer/analyzer.rb:694:ineach'
+    ........
+    ```
+    
+    1. 原因：
+        1. 就是你的xcode版本和现在CocoaPods 的版本问题不匹配  比如你用xcode8 你的cocoaPods 版本是1.0.1 . 就有可能出现此类问题。因为xcode8需要cocoaPods1.1.0.
+    2. 解决方法：
+        1. 就是更新cocoaPods的版本 ，在终端执行如下命令gem install cocoapods --pre，然后在相对应podfile文件所在路径下执行pod install 即可。
+
