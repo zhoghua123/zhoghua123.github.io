@@ -86,4 +86,45 @@ description: 静态库
         5. 合成后文件路径如下：
             
             ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai03.png)
+    7. release 和debug静态库的区别
+        1. 从上面可操作可以看出，我们是在debug环境下生成的静态库。如果要想打release的静态库，可以先把Xcode的环境设置为release（至于怎么设置，百度），然后在生成静态库
+        2. 静态库有4种形式
+            1. 真机Debug版本
+            2. 真机Release版本
+            3. 模拟器Debug版本
+            4. 模拟器Release版
+        3. release版本的代码更加简洁，因此最好打包release版本。      
+3. **注意：**
+    1. 如果静态库中包含了分类Category，默认是不会把分类的.m文件链接进来的，在使用静态库的工程中会报”方法找不到“的错误（unrecognized selector sent to instance）
+        1. 解决办法：targets ->build settings ->other->other linker Flags->双击后边添加-ObjC即可
+    2. 静态库是不能把资源文件bundle打进去的，制作静态库时，不能把.bundle拖进去，制作完成后，把.a/.h和bundle放到一个新的文件夹即可。
+    3. 从上面我们知道，编译静态库时，每次编译只会生成一种架构
+        1. 但是由于模拟器iPhone5 跟iPhone5s的CPU架构不同，一个是i386，一个是x86_64，那怎么办呢？ **难道模拟器也要编译2个静态库，在合并吗？ 这个是不需要的**
+        2. 在编译静态库之前，target-> build settings -> 搜索build -> build Active architetcture Only -> Debug ->设置为NO
+        3. 而且在设置之前我们可以看到，这个地方release默认为NO ，而Debug默认为YES
+            ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai04.png)
+ 4. 在项目中直接制作静态库
+    1. 优点：边写项目，边可以调试静态库。
+    2. 实际开发中不是先在项目中写好文件，然后拖出来，制作静态库的，而是在项目中直接制作
+    3. 在项目中,按照下面步骤即可
+        1. 点击项目-->左下角+号
+            ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai05.png)    
+        2. 选择希望开发的静态库类型(.a/.framework)
+            ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai06.png)  
+        3. 创建静态库后，项目会多出以下内容：（比如静态库的名字为ZHExtension）
+            1. 项目target会多出一个ZHExtension，并且图标为一个小房子
+            2. 项目中会多出一个ZHExtension文件夹，而且里面默认有ZHExtension.h/.m文件
+            3. 文件Products目录下回多出一个libZHExtension.a红色，文件，红色说明还没有编译生成静态库
+            4. 如下图
+                ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai07.png)  
+        4. 编写将要打包的代码
+            1. 所有你需要打成静态库的代码，都写在ZHExtension那个文件中
+            2. 写好代码后，你在项目中运行，会发现报错
+            3. 那是因为，你写的ZHExtension文件中的代码，是一个静态库中，而当前这个项目并没有引用到这个静态库，需要我们手动把这个静态库加载到当前项目。
+                ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai08.png) 
+        5. 编译写好的静态库
+            1. 将项目中的target选择为静态库ZHExtension，然后command +B编译即可。
+            2. 至于生成通用架构的静态库，方法跟之前一样。
+                ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai09.png) 
+
 
