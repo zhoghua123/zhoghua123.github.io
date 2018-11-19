@@ -57,7 +57,8 @@ description: 静态库
     3. 将.a文件也复制到这里
 7. 创建一个项目,测试使用静态库即可.
 8. 问题抛出：到这里，我们是制作了两个静态库，一个是真机环境下做的额，另一个是模拟器环境下做的，那么我们使用时会发现，真机设备下只能用真机.a ，模拟器下的只能用模拟器.a，否则就会报错，怎么办呢？
-2. 静态库的架构问题
+
+### 静态库的架构问题
 1. 设备的CPU架构
     1. 不同的设备使用的CPU是不同的
     2. CPU的不同造成使用的CPU架构(指令集)不同
@@ -94,15 +95,15 @@ description: 静态库
         3. 模拟器Debug版本
         4. 模拟器Release版
     3. release版本的代码更加简洁，因此最好打包release版本。      
-3. **注意：**
-1. 如果静态库中包含了分类Category，默认是不会把分类的.m文件链接进来的，在使用静态库的工程中会报”方法找不到“的错误（unrecognized selector sent to instance）
-    1. 解决办法：targets ->build settings ->other->other linker Flags->双击后边添加-ObjC即可
-2. 静态库是不能把资源文件bundle打进去的，制作静态库时，不能把.bundle拖进去，制作完成后，把.a/.h和bundle放到一个新的文件夹即可。
-3. 从上面我们知道，编译静态库时，每次编译只会生成一种架构
-    1. 但是由于模拟器iPhone5 跟iPhone5s的CPU架构不同，一个是i386，一个是x86_64，那怎么办呢？ **难道模拟器也要编译2个静态库，在合并吗？ 这个是不需要的**
-    2. 在编译静态库之前，target-> build settings -> 搜索build -> build Active architetcture Only -> Debug ->设置为NO
-    3. 而且在设置之前我们可以看到，这个地方release默认为NO ，而Debug默认为YES
-        ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai04.png)
+8. **注意：**
+    1. 如果静态库中包含了分类Category，默认是不会把分类的.m文件链接进来的，在使用静态库的工程中会报”方法找不到“的错误（unrecognized selector sent to instance）
+        1. 解决办法：targets ->build settings ->other->other linker Flags->双击后边添加-ObjC即可
+    2. 静态库是不能把资源文件bundle打进去的，制作静态库时，不能把.bundle拖进去，制作完成后，把.a/.h和bundle放到一个新的文件夹即可。
+    3. 从上面我们知道，编译静态库时，每次编译只会生成一种架构
+        1. 但是由于模拟器iPhone5 跟iPhone5s的CPU架构不同，一个是i386，一个是x86_64，那怎么办呢？ **难道模拟器也要编译2个静态库，在合并吗？ 这个是不需要的**
+        2. 在编译静态库之前，target-> build settings -> 搜索build -> build Active architetcture Only -> Debug ->设置为NO
+        3. 而且在设置之前我们可以看到，这个地方release默认为NO ，而Debug默认为YES
+            ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai04.png)
     
 ###  在项目中直接制作静态库
 1. 优点：边写项目，边可以调试静态库。
