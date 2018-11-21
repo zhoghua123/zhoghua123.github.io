@@ -189,3 +189,11 @@ description: 静态库
     1. 如果静态库中用到了图片资源，一般都放到一个bundle文件中，bundle名字一般跟 .a 或 .framework 名字一致
     2. bundle的创建：新建一个文件夹，修改扩展名为 .bundle 即可，右击bundle文件，显示包内容，就可以往bundle文件中放东西
 
+
+## 实战问题整理：
+1. 我明明已经设置了build Active architetcture Only -> Debug ->设置为NO了，但是我查看我打包的静态库，为何只支持arm64 没有armv7呢？ 或者模拟器只有x86_64，没有i386呢？
+    1. 因为iOS11支持>iPhone 5s，你的静态库当前支持的系统，是>大于iOS11的，因此，静态库，只有arm64架构，同理模拟器只有x86_64架构
+    2. 解决办法，在target中选择相应的静态库，然后在general中把最低支持系统设置的低一点，就行了
+    3. 如下图：
+        ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai14.png)
+
