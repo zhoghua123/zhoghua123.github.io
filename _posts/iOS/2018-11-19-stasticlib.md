@@ -197,3 +197,78 @@ description: 静态库
     3. 如下图：
         ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai14.png)
 
+## bundle资源文件的应用
+1. 如果有代码里用到了image和xib或者sb文件，那么此时就要用到bundle了
+2. 创建bundle
+    1. 如下面6步骤
+        ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/bundle01.png)
+        
+        1. 为何选择macOS ? 因为iOS环境下没有
+    2. 命名（假设为testBundle），然后create
+    3. 项目目录会多一个testBundle文件
+2. 配置bundle
+    1. 因为当时选择的事macOS，所以现在要设置为iOS类型的
+    2. 要把enable bitcode设置为NO
+    
+    ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/bundle02.png)
+
+3. 设置COMBINE_HIDPI_IMAGES 为NO
+    ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/bundle03.png)
+
+4. 在General中设置当前最低支持的iOS系统
+5. 在项目的testBundle中添加相应的图片、xib、sb即可
+6. **注意：**
+    1. 一定要在testBundle这个target下的Copy Bundle Resource中看看，相应的资源是否已经添加进去了。
+    2. **如果静态库xxx.framework用到了这个bundle，注意一定要将这个bundle添加到该静态库的Copy Bundle Resource 中**。
+
+### 加载bundle中的资源
+1. 图片资源
+    1. 代码
+        
+        ```
+        //方法1：
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"myBundle" ofType:@"bundle"];
+        NSBundle *bundle = [NSBundle bundleWithPath:path];
+        NSString *file = [bundle pathForResource:@"pic" ofType:@"png"];
+        UIImage *img = [UIImage imageWithContentsOfFile:file];
+        
+        //方法2：
+        NSString *file2 = [[NSBundle mainBundle] pathForResource:@"myBundle.bundle/pic" ofType:@"png"];
+        UIImage *img2 = [UIImage imageWithContentsOfFile:file2];
+        
+        //方法3：
+        UIImage *img3 = [UIImage imageNamed:@"myBundle.bundle/pic"];
+        ```
+    2. xib、sb中使用图片：直接设置即可，因为打包bundle的时候xib、SB文件和图片资源文件在同一目录下.
+2. 代码加载xib/sb
+    1. xib
+        
+        ```
+        //重写要加载的view的init方法
+
+        - (instancetype)init {
+        
+            if (self = [super init]) {
+                
+                NSBundle *bundle = [NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Ydw.bundle"]];
+                
+                self = [[bundle loadNibNamed:@"Dov" owner:self options:nil] lastObject];
+            }
+            
+            return self;
+        }
+
+        ```
+    2. sb：
+        
+        ```
+        //新增类工厂方法
+        +(instancetype)faceRegisterVC{
+            NSString* bundlePath = [[NSBundle mainBundle] pathForResource:@"xxbundle" ofType:@"bundle"];
+            NSBundle* resourceBundle = [NSBundle bundleWithPath:bundlePath];
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"FaceRegisterStoryboard" bundle:resourceBundle];
+            return [sb instantiateViewControllerWithIdentifier:@"FaceRegisterStoryboard"];
+        }
+        ```
+
+
