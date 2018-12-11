@@ -216,10 +216,10 @@ description: 静态库
     ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/bundle03.png)
 
 4. 在General中设置当前最低支持的iOS系统
-5. 在项目的testBundle中添加相应的图片、xib、sb即可
+5. 在项目的testBundle中添加相应的图片、xib、sb，然后项目选择为当前的bundle的Target编译即可，就能在项目的products文件下找到相应的bundle文件。
 6. **注意：**
     1. 一定要在testBundle这个target下的Copy Bundle Resource中看看，相应的资源是否已经添加进去了。
-    2. **如果静态库xxx.framework用到了这个bundle，注意一定要将这个bundle添加到该静态库的Copy Bundle Resource 中**。
+    2. **如果静态库xxx.framework用到了这个bundle，注意一定要将这个bundle添加到该静态库的Copy Bundle Resource 中，添加方法不在赘述**。
 
 ### 加载bundle中的资源
 1. 图片资源
