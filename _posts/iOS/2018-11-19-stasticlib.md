@@ -218,8 +218,15 @@ description: 静态库
 4. 在General中设置当前最低支持的iOS系统
 5. 在项目的testBundle中添加相应的图片、xib、sb，然后项目选择为当前的bundle的Target编译即可，就能在项目的products文件下找到相应的bundle文件。
 6. **注意：**
-    1. 一定要在testBundle这个target下的Copy Bundle Resource中看看，相应的资源是否已经添加进去了。
-    2. **如果静态库xxx.framework用到了这个bundle，注意一定要将这个bundle添加到该静态库的Copy Bundle Resource 中，添加方法不在赘述**。
+    1. 一定要在testBundle这个target下的Copy Bundle Resource中看看，相应的资源是否已经添加进去了。同理在打xxx.framework静态库的时候一定也要看看Compile Sources 、Headers 、Copy Bundle Resource文件下是否都添加了响应的文件。
+    2. **如果静态库xxx.framework用到了这个bundle，注意一定要将这个bundle添加到该静态库的Copy Bundle Resource 中，这个很重要！！！！**。
+        1. 如果没有添加，最后打包成的静态库xxx.framework中就不含testBundle.bundle文件
+        2. 如何添加呢？ 
+            1. 在项目的TARGETS列表中选择xxx这个静态库Target
+            2. 选择Build Phases-> Copy Bundle Resources
+            3. 点击+，选择当前项目下的Products文件下的testBundle，添加即可
+            4. 这样打出来的静态库xxx.framework中，就包含testBundle.bundle文件了
+            5. 但是注意了：编译xxx.framework静态库之前，必须先编译testBundle.bundle，否则就会报错
 
 ### 加载bundle中的资源
 1. 图片资源
