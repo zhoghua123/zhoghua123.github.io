@@ -12,7 +12,8 @@
 <!--      {% include social.html %}-->
     </div>
 <!--设置左列导航栏-->
-    <ul id="sidebar-tags">
+<!--    <ul id="sidebar-tags" >-->
+    <ul id="sidebar-tags" style="overflow: auto;">
 <!--      <li class="sidebar-tag active" data-filter="recent">最新文章</li>-->
       {% if site.filter == 'category' %}
         {% for category in site.categories %}
