@@ -256,15 +256,10 @@ description: 静态库
         ```
         //重写要加载的view的init方法
 
-        - (instancetype)init {
-        
-            if (self = [super init]) {
-                
-                NSBundle *bundle = [NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Ydw.bundle"]];
-                
-                self = [[bundle loadNibNamed:@"Dov" owner:self options:nil] lastObject];
+        - (instancetype)init{
+            NSBundle *bundle = [NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"CMZHReadIDCardBundle.bundle"]];
+            if (self = [super initWithNibName:@"ShowIDCardInfoViewController" bundle:bundle]) {
             }
-            
             return self;
         }
 
