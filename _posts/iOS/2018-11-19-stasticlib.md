@@ -230,6 +230,11 @@ description: 静态库
             3. 点击+，选择当前项目下的Products文件下的testBundle，添加即可
             4. 这样打出来的静态库xxx.framework中，就包含testBundle.bundle文件了
             5. **但是注意了：编译xxx.framework静态库之前，必须先编译testBundle.bundle，否则就会报错**
+    3. **项目中**一定也要把这个bundle添加到Copy Bundle Resource文件下，否则下面的代码找不到bundle  !!!!
+        
+        ```
+        NSBundle *bundle = [NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"CMZHReadIDCardBundle.bundle"]];
+        ```
 
 ### 加载bundle中的资源
 1. 图片资源
