@@ -196,8 +196,9 @@ description: 静态库
     2. 解决办法，在target中选择相应的静态库，然后在general中把最低支持系统设置的低一点，就行了
     3. 如下图：
         ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai14.png)
-2. 如果当前打的静态库中使用了其他的静态库framework(注意不是.a),那么在你这个静态库Target下（general->Linked Frameworks ...）也要导入这几个使用的framework
-    1. 注意：如果是.a的话，可以直接拖入到这个静态库文件中，如果不拖入，注意这里不能导入.a的静态库
+        
+2. 如果当前打的静态库中使用了其他的静态库framework(注意不是.a),那么在你这个静态库`Target`下`（general->Linked Frameworks ...）`也要导入这几个使用的framework
+    1. 注意：如果是`.a`的话，可以直接拖入到这个静态库文件中，如果不拖入，注意这里不能导入.a的静态库
 
 ## bundle资源文件的应用
 1. 如果有代码里用到了image和xib或者sb文件，那么此时就要用到bundle了
