@@ -51,10 +51,10 @@ description: CollectionView的详细使用
 情况1:    
     同一行有不同的size的cell.由于高度不同,那么最小行间距就是本行最高的cell距离下一行最高cell的间距    
    同理,同一列有不同size的cell,由于宽度不同,那么最大列间距就是本列最宽cell距离下一列最宽cell的间距    
-![pic-w100](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/coll1.png)  
+![pic-w50](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/coll1.png)  
 情况2:    
 cell的itemsize已经设置固定,行间距再固定,那么界面排版就冲突,因此设置最小间距   
-![pic-w100](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/collection2.png)  
+![pic-w50](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/collection2.png)  
 //每个cell统一尺寸        
   `itemSize`    
      //预估cell的尺寸，ios8之后可以先去预估cell的尺寸，然后去自适应(与tableView相似)   
