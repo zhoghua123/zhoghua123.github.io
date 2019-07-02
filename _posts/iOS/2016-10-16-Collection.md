@@ -5,38 +5,44 @@ category: iOS开发
 tags: CollectionView
 description: CollectionView的详细使用
 ---
-# 基本知识点
+
 ## tableView与collectionView比较
 1. 相同点  
-    1> 都是通过datasource和delegate驱动的(datasource和delegate)，因此在使用的时候必须实现数据源与代理协议方法;  
-    2> 性能上都实现了循环利用的优化。
+    1. 都是通过`datasource`和`delegate`驱动的，因此在使用的时候必须实现数据源与代理协议方法;  
+    2. 性能上都实现了循环利用的优化。
 2. 不同点  
-    1> UITableView的cell是系统自动布局好的，不需要我们布局。但是UICollectionView的cell是需要我们自己布局的。所以我们在创建UICollectionView的时候必须传递一个布局参数，系统提供并实现了一个布局样式：流水布局(UICollectionViewFlowLayout)  
-     2> UITableViewController的self.view == self.tableview;,但UICollectionViewController的self.view != self.collectionView；        
- UICollectionViewController层次结构：控制器View 上面UICollectionView    
-    3> UITableView的滚动方式只能是垂直方向， UICollectionView既可以垂直滚动，也可以水平滚动；    
-    4> UICollectionView的cell只能通过注册来确定重用标识符。不能像tableViewcell一样initWith...    
-    5> 并不能直接设置cell的高度/section之间距离的数据源方法,只能通过设置layout来实现  
-**结论** : 换句话说，UITableView的布局是UICollectionView的flow layout布局的一种特殊情况，类比于同矩形与正方形的关系  
-  
-**代码举例:**
+    1. `UITableView`的`cell`是系统自动布局好的，不需要我们布局(垂直分布，一行一行排列)。但是`UICollectionView`的`cell`是需要自己布局的(每个`item`如何排布)。
+        1. 因此在创建`UICollectionView`的时候必须传递一个布局参数，而且这个参数必须是`UICollectionViewLayout`的子类
+            
+            ```
+            - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout;
+            ```
+        2. 系统默认提供并实现了一个布局样式：流水布局(`UICollectionViewFlowLayout`)  
+    2. `UITableViewController`的`self.view == self.tableview;`,但`UICollectionViewController`的`self.view != self.collectionView`
+        1. `UICollectionViewController`层次结构：控制器`View `上面`UICollectionView`   
+    3. `UITableView`的滚动方式只能是垂直方向， `UICollectionView`既可以垂直滚动，也可以水平滚动；    
+    4. `UICollectionView`的`cell`只能通过注册来确定重用标识符。不能像`tableViewcell`一样`initWith...`    
+    5. 并不能直接设置`cell`的高度/`section`之间距离的数据源方法,只能通过设置`layout`来实现  
+3. **结论** : 换句话说，UITableView的布局是UICollectionView的flow layout布局的一种特殊情况，类比于同矩形与正方形的关系 
+4. 代码举例： 
+    
+    ```
+    CGRect frame = CGRectZero;
+    UICollectionView *collection = [[UICollectionView alloc] init];
+    collection.frame = frame;
+    [self.view addSubview:collection];
+    //运行报错:
+    //reason: UICollectionView must be initialized with a non-nil layout parameter
+    //意思:collctionView初始化时必须要传一个非空布局(layout)参数(parameter);
+    // 因此初始化方法如下:
+    UICollectionView *collection = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+    ```
 
-```javascript
-
-  UICollectionView *collection = [[UICollectionView alloc] init];
-     collection.frame = frame;
-     [self.view addSubview:collection];
-     运行报错:
-     reason: UICollectionView must be initialized with a non-nil layout parameter
-     意思:collctionView初始化时必须要传一个非空布局(layout)参数(parameter);
-     因此初始化方法如下:
-  UICollectionView *collection = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-```
 ## UICollectionViewFlowLayout
-* 系统自定义布局,流水布局,即:像流水一样一行满了,排下一行
-*  UICollectionViewLayout的子类
-*  CollectionViewcell排布的样式是由UICollectionViewLayout决定的
-* 该类常用属性如下:     
+1. 系统自定义布局,流水布局,即:像流水一样一行满了,排下一行
+2. `UICollectionViewLayout`的子类
+3. `CollectionViewcell`排布的样式是由`UICollectionViewLayout`决定的
+4. 该类常用属性如下:     
 //设置最小行间距   
  `minimumLineSpacing  `     
 // 设置垂直间距   
@@ -66,9 +72,11 @@ cell的itemsize已经设置固定,行间距再固定,那么界面排版就冲突
 `footerReferenceSize`       
    //每一组的内容缩进   
 `sectionInset`    
+
+
 ## 代码举例:制作一个简单启动广告页
 
-```javascript    
+```   
 AppDelegate中代码
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UIWindow *window = [[UIWindow alloc] init];
@@ -153,6 +161,6 @@ static NSString * const reuseIdentifier = @"Cell";
 ---
 **效果图如下**
 
-![图3](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/collection1.gif)
+![图3-w100](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/collection1.gif) 
 
 
