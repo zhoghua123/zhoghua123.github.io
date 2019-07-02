@@ -10,6 +10,7 @@ description: CollectionView的详细使用
 1. 相同点  
     1. 都是通过`datasource`和`delegate`驱动的，因此在使用的时候必须实现数据源与代理协议方法;  
     2. 性能上都实现了循环利用的优化。
+    3. 都继承自`UIScrollView`
 2. 不同点  
     1. `UITableView`的`cell`是系统自动布局好的，不需要我们布局(垂直分布，一行一行排列)。但是`UICollectionView`的`cell`是需要自己布局的(每个`item`如何排布)。
         1. 因此在创建`UICollectionView`的时候必须传递一个布局参数，而且这个参数必须是`UICollectionViewLayout`的子类
@@ -42,37 +43,55 @@ description: CollectionView的详细使用
 1. 系统自定义布局,流水布局,即:像流水一样一行满了,排下一行
 2. `UICollectionViewLayout`的子类
 3. `CollectionViewcell`排布的样式是由`UICollectionViewLayout`决定的
-4. 该类常用属性如下:     
-//设置最小行间距   
- `minimumLineSpacing  `     
-// 设置垂直间距   
- `minimumInteritemSpacing`       
-**注意**:解析为何min ?    
-情况1:    
-    同一行有不同的size的cell.由于高度不同,那么最小行间距就是本行最高的cell距离下一行最高cell的间距    
-   同理,同一列有不同size的cell,由于宽度不同,那么最大列间距就是本列最宽cell距离下一列最宽cell的间距    
-![pic-w50](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/coll1.png)  
-情况2:    
-cell的itemsize已经设置固定,行间距再固定,那么界面排版就冲突,因此设置最小间距   
-![pic-w50](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/collection2.png)  
-//每个cell统一尺寸        
-  `itemSize`    
-     //预估cell的尺寸，ios8之后可以先去预估cell的尺寸，然后去自适应(与tableView相似)   
- `estimatedItemSize`   
-    
-``` 
-   //一行代码足以,不需要向tableView2行代码
-     layout.estimatedItemSize = CGSizeMake( 60, 60);
-```
- //设置滚动方向（默认垂直滚动）   
-   `scrollDirection `   
-    //每一组头视图的尺寸。如果是垂直方向滑动，则只有高起作用；如果是水平方向滑动，则只有宽起作用。    
- `headerReferenceSize`      
-  //每一组尾部视图的尺寸。如果是垂直方向滑动，则只有高起作用；如果是水平方向滑动，则只有宽起作用。     
-`footerReferenceSize`       
-   //每一组的内容缩进   
-`sectionInset`    
-
+4. 该类常用属性如下:    
+    1. 最小行间距与最小垂直间距
+        
+        ```
+        //设置最小行间距   
+        minimumLineSpacing   
+        // 设置垂直间距   
+        minimumInteritemSpacing
+        ``` 
+        
+        1. **注意：**为何是最小(minimum)呢？ 怎么不直接是行间距与列间距呢？
+        2. 分析：
+            1. 情况1:
+                1. 同一行有不同的size的cell.由于高度不同,那么最小行间距就是本行最高的cell距离下一行最高cell的间距  
+                2. 同理,同一列有不同size的cell,由于宽度不同,那么最大列间距就是本列最宽cell距离下一列最宽cell的间距 
+                    
+                    ![pic-w50](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/coll1.png) 
+            2. 情况2:
+                1. `cell`的`itemsize`已经设置固定,行间距再固定,那么界面排版就冲突,因此设置最小间距 
+                    
+                    ![pic-w50](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/collection2.png) 
+    2. 其他属性
+        
+        ```
+        //每个cell统一尺寸        
+        itemSize
+         
+         //预估cell的尺寸，ios8之后可以先去预估cell的尺寸，然后去自适应(与tableView相似) 
+        estimatedItemSize
+        //一行代码足以,不需要向tableView2行代码
+        layout.estimatedItemSize = CGSizeMake( 60, 60);
+        
+        //设置滚动方向（默认垂直滚动）   
+        scrollDirection
+        
+        //每一组头视图的尺寸。如果是垂直方向滑动，则只有高起作用；如果是水平方向滑动，则只有宽起作用。 
+        headerReferenceSize
+        
+        //每一组尾部视图的尺寸。如果是垂直方向滑动，则只有高起作用；如果是水平方向滑动，则只有宽起作用。 
+        footerReferenceSize
+        
+        //每一组的内容缩进，每个section的内部缩进
+        sectionInset
+        
+        //每一个section的header都是悬浮（iOS9）
+        sectionHeadersPinToVisibleBounds
+        //每一个section的footer都是悬浮（iOS9）
+        sectionFootersPinToVisibleBounds
+        ```
 
 ## 代码举例:制作一个简单启动广告页
 
@@ -86,8 +105,8 @@ AppDelegate中代码
     [window makeKeyAndVisible];
     return YES;
 }
-自定义的CollectionViewController控制器:
-CollectionViewController.m文件
+//自定义的CollectionViewController控制器:
+//CollectionViewController.m文件
 //  UICollection的基本使用-启动页制作
 #import "ViewController.h"
 #import "CollectionViewController.h"
@@ -104,7 +123,9 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.backgroundColor = [UIColor greenColor];
     //取消弹簧效果
     self.collectionView.bounces = NO;
+   //水平方向的滚动条
     self.collectionView.showsHorizontalScrollIndicator = NO;
+    //分页滚动
     self.collectionView.pagingEnabled = YES;
     //1.必须通过注册cell
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -139,7 +160,11 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     //自定义cell,在cell里面放一张图片即可(略)
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    [cell.contentView addSubview:[UISwitch new]];
+     if (![cell.contentView viewWithTag:-100]) {
+        UISwitch *sw = UISwitch.new;
+        sw.tag = -100;
+        [cell.contentView addSubview:[UISwitch new]];
+    }
     cell.backgroundColor = [UIColor blueColor];
     return cell;
 }
@@ -161,6 +186,6 @@ static NSString * const reuseIdentifier = @"Cell";
 ---
 **效果图如下**
 
-![图3-w100](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/collection1.gif) 
+![pic-w50](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/collection1.gif) 
 
 
