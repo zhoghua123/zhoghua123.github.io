@@ -5,11 +5,12 @@ category: iOS开发
 tags: CollectionView
 description: CollectionView的详细使用
 ---
-# collectionView的基本使用-九宫格
+
+## collectionView的基本使用-九宫格
 
 CollectionViewController2.m文件如下:
 
-```javascript
+```
 #import "CollectionViewController2.h"
 #import "CollectionViewCell.h"
 #import "CollectionHeadView.h"
