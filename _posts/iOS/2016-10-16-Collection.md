@@ -67,7 +67,7 @@ description: CollectionView的详细使用
     2. 其他属性
         
         ```
-        //每个cell统一尺寸        
+        //每个cell统一尺寸，系统默认50*50
         itemSize
          
          //预估cell的尺寸，ios8之后可以先去预估cell的尺寸，然后去自适应(与tableView相似) 
