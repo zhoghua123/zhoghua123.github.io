@@ -172,4 +172,37 @@ description: CocoaPods
         1. 就是你的xcode版本和现在CocoaPods 的版本问题不匹配  比如你用xcode8 你的cocoaPods 版本是1.0.1 . 就有可能出现此类问题。因为xcode8需要cocoaPods1.1.0.
     2. 解决方法：
         1. 就是更新cocoaPods的版本 ，在终端执行如下命令: `gem install cocoapods --pre`，然后在相对应podfile文件所在路径下执行`pod install` 即可。
+2. CocoaPods 到 1.8.4问题：
+    1. 今天升级 CocoaPods 到 1.8.4 版本，但是随即问题就来了, 执行 pod install 下载库时，出现错误
+        
+        ```
+        [!] CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_a_7_5.txt, error: execution expired
+        ```
+    2. 解决办法：
+        1. 查看ropo源：`pod repo list`
+            
+            ```
+            master
+            - Type: git (master)
+            - URL:  https://github.com/CocoaPods/Specs.git
+            - Path: /Users/mac/.cocoapods/repos/master
+            
+            trunk
+            - Type: CDN
+            - URL:  https://cdn.cocoapods.org/
+            - Path: /Users/mac/.cocoapods/repos/trunk
+            
+            2 repos
+            ```
+        2. 删除trunk源:`pod repo remove trunk`
+        3. 就是在 Podfile 加上 `source ‘https://github.com/CocoaPods/Specs.git’`, 因为现在默认是trunk源
+        
+            ```
+            source 'https://github.com/CocoaPods/Specs.git'
+            target 'xxxxx' do
+            use_frameworks!
+            pod 'AMapLocation'
+            pod 'AMapNavi'
+            end
+            ```
 
