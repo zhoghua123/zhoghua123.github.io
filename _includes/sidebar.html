@@ -13,7 +13,7 @@
     </div>
 <!--设置左列导航栏-->
 <!--    <ul id="sidebar-tags" >-->
-    <ul id="sidebar-tags" style="overflow: auto;">
+    <ul id="sidebar-tags" style="overflow-x: scroll; height: 400px;">
 <!--      <li class="sidebar-tag active" data-filter="recent">最新文章</li>-->
       {% if site.filter == 'category' %}
         {% for category in site.categories %}
