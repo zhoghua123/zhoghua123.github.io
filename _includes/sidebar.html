@@ -13,18 +13,22 @@
     </div>
 <!--设置左列导航栏-->
 <!--    <ul id="sidebar-tags" >-->
-    <ul id="sidebar-tags" style="overflow-x: scroll; height: 400px;">
+    <div>
+      <ul id="sidebar-tags" style="overflow-y: scroll; overflow-x:hidden; height: 400px;">
 <!--      <li class="sidebar-tag active" data-filter="recent">最新文章</li>-->
-      {% if site.filter == 'category' %}
-        {% for category in site.categories %}
-          <li class="sidebar-tag" data-filter="{{ category | first }}">{{ category | first }}</li>
-        {% endfor %}
-      {% elsif site.filter == 'tag' %}
-        {% for tag in site.tags %}
-          <li class="sidebar-tag" data-filter="{{ tag | first }}">{{ tag | first }}</li>
-        {% endfor %}
-      {% endif %}
-    </ul>
+        {% if site.filter == 'category' %}
+          {% for category in site.categories %}
+            <li class="sidebar-tag" data-filter="{{ category | first }}">{{ category | first }}</li>
+          {% endfor %}
+        {% elsif site.filter == 'tag' %}
+          {% for tag in site.tags %}
+            <li class="sidebar-tag" data-filter="{{ tag | first }}">{{ tag | first }}</li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+
+    
   </div>
 <!--设置每个导航栏下面对应的文章列表-->
   <div id="sidebar-right">
