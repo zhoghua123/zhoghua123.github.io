@@ -1,11 +1,12 @@
 ---
 layout: post
-title: Foundation框架之-NSFileManager
+title: Foundation框架之-NSFileManager/NSData
 category: OC语法
 tags: OC语法
 description: Foundation框架
 ---
 
+## NSFileManager
 1. NSFileManager介绍
     1. 用来管理文件系统的
     2. 用来进行常见的文件/文件夹操作
@@ -67,5 +68,62 @@ description: Foundation框架
     [manager createFileAtPath:@"/Users/xiaomage/Desktop/abc.txt" contents:data attributes:nil];
     ```
     
+## NSData
+1. 简介
+    1. 当我们需要把一些信息写入到文件里，或者发送到网络上，我们需要把这些数据转换下，变成纯粹的0、1字符流    
+    2. 使用于读写文件，而读写文件时需要一个缓冲区，而NSData就提供了一个缓冲区
+    3. NSData遵守NSCopying、NSCoding协议，它提供将面向对象的数组存储为字节
+    4. NSData与NSMutableData存储的都是二进制数据，在文件操作、网络、以及核心图形、图像中使用较广泛，NSData创建后不可再修改，而NSMutableData可以修改
+2. NSString与NSData之间的转化
     
+    ```
+    //字符串---NSData
+    NSString *str = @"123456";
+    NSData *strData = [str dataUsingEncoding:NSUTF8StringEncoding];
+    //NSData---字符串
+    NSString *dataStr = [[NSString alloc] initWithData:strData encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",dataStr);
+    ```
+3. UIImage与NSData之间的转化
+    
+    ```
+    //UIimage---NSData
+    NSString *imgPath = [[NSBundle mainBundle] pathForResource:@"ic_cat_music.png" ofType:nil];
+    NSLog(@"%@",imgPath);
+    NSData *imageData = [NSData dataWithContentsOfFile:imgPath];
+    UIImage *image = [UIImage imageWithData:imageData];
+    //UIImage--data
+    NSData *imgData = UIImagePNGRepresentation(image);
+    ```
+4. NSNumber/NSArray/NSDictionary与NSData之间的转化
+    1. 数组转NSData是建立在归档的基础上，归档也称为序列化，OC中的NSSting、NSNumber、NSArray、NSDictionary对象、NSData。这些类需要进行数据保存时，可以通过NSKeyArchive类来实现。
+    2. Foundation框架`<Foundation/NSKeyedArchiver.h>`提供归档和解档方式，也叫序列化和反序列化过程
+    3. 举例使用
+        
+        ```
+        // 序列化
+        NSDictionary *dic = @{@"key":@"123",@"key":@"345"};
+        //1. 获取归档路径
+        NSString *dicPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"dic.text"];
+        //2. 将字典归档后直接保存到文件中
+        [NSKeyedArchiver archiveRootObject:dic toFile:dicPath];
+        
+        //3. 把字典或数组转换为NSData，再保存到一个文件中
+        // 转换成NSData
+        NSData *dicData = [NSKeyedArchiver archivedDataWithRootObject:dic];
+        //保存到文件中
+        NSFileManager *file= [NSFileManager defaultManager];
+        [file createFileAtPath:dicPath contents:dicData attributes:nil];
+        
+        //4. 解归档
+        //直接从文件中解归档
+        NSDictionary *undict = [NSKeyedUnarchiver unarchiveObjectWithFile:dicPath];
+        NSLog(@"---dic2---%@",undict);
+        
+        //将文件转换为NSData，再从NSData接归档
+        NSData *undicData = [file contentsAtPath:dicPath];
+        NSDictionary *unxdict = [NSKeyedUnarchiver unarchiveObjectWithData:undicData];
+        NSLog(@"---dic---%@",unxdict);
+        ```
+        
 
