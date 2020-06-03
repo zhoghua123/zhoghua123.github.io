@@ -205,4 +205,42 @@ description: CocoaPods
             pod 'AMapNavi'
             end
             ```
+    3. 如何添加一个镜像源
+        1. 使用场景：当别人的项目Podfile文件中的source不是`https://github.com/CocoaPods/Specs.git`怎么办呢？
+        2. 添加对应的镜像源
+            1. 我的镜像源列表
+                
+                ```
+                macdeMacBook-Pro:~ mac$ pod repo list
+                
+                master
+                - Type: git (master)
+                - URL:  https://github.com/CocoaPods/Specs.git
+                - Path: /Users/mac/.cocoapods/repos/master
+                
+                1 repo
+                ```
+            2. 别人项目Podfile的source：`https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git`
+            3. 添加这个镜像源：
+                
+                ```
+                pod repo add edu-git-cocoapods-specs https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git
+                ```
+            4. 添加后的repo list 如下
+                
+                ```
+                macdeMacBook-Pro:~ mac$ pod repo list
+
+                edu-git-cocoapods-specs
+                - Type: git (unknown)
+                - URL:  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git
+                - Path: /Users/mac/.cocoapods/repos/edu-git-cocoapods-specs
+                
+                master
+                - Type: git (master)
+                - URL:  https://github.com/CocoaPods/Specs.git
+                - Path: /Users/mac/.cocoapods/repos/master
+                
+                2 repos
+                ```
 
