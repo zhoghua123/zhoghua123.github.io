@@ -197,7 +197,7 @@ description: 静态库
     3. 如下图：
         ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/jingtai14.png)
         
-2. 如果当前打的静态库中使用了其他的静态库framework(注意不是.a),那么在你这个静态库`Target`下`（general->Linked Frameworks ...）`也要导入这几个使用的framework
+2. 如果当前打的静态库（.a或者.framework）中使用了其他的静态库framework(注意不是.a),那么在你这个静态库`Target`下`（a形式: general->Linked Frameworks .../framework形式:Build Phases->Link Binary With Libraries ... ）`也要导入这几个使用的framework
     1. 注意：如果是`.a`的话，可以直接拖入到这个静态库文件中，如果不拖入，注意这里不能导入.a的静态库
 4. 注意事项:
     1. **含有静态库源码的项目是不可以打成ipa包的！！！！**
