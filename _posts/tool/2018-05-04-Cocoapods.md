@@ -102,30 +102,24 @@ description: CocoaPods
 1. 常用命令: 
     
     ```
-    1. 更换repo镜像为国内服务器(原路径出现问题时才需要替换,基本不用)
-    这个镜像源指的就是第三方库的下载资源路径,默认在:https://github.com/CocoaPods/Specs.git  
+    1. 查看当前repo的镜像源：pod repo list
+    2. 更换repo镜像为国内服务器(原路径出现问题时才需要替换,基本不用！！！)
+        这个镜像源指的就是第三方库的下载资源路径,默认在:https://github.com/CocoaPods/Specs.git  
      
-    //移除原来路径
-    pod repo remove master
-    
-    //添加新的路径
-    pod repo add master source https://gitcafe.com/akuandev/Specs.git
+        //移除原来路径
+        pod repo remove master
+        
+        //添加新的路径
+        pod repo add master https://gitcafe.com/akuandev/Specs.git
     
     2. 更新本地资源库
-    在pod setup 之后,cocoapods会从https://github.com/CocoaPods/Specs.git 路径下载所有的第三方库到本地,然而如果长时间不更新,本地资源库中的第三方仍然是老版本的
-    
-    pod repo update
-
+        在pod setup 之后,cocoapods会从https://github.com/CocoaPods/Specs.git 路径下载所有的第三方库到本地,然而如果长时间不更新,本地资源库中的第三方仍然是老版本的，使用下面命令更新本地库
+        pod repo update
     3. 将项目中Podfile文件中声明的第三方库下载到项目中
-    
-    pod install
-    
+        pod install
     4. 查找第三方库
-    
         在终端中输入pod search +第三方框架名（或一部分），就能查看cocoapods中是否有这个第三方
-        
-    pod search ...
-        
+        pod search ...
     ```
 2. 使用步骤
     
@@ -152,7 +146,6 @@ description: CocoaPods
     点击esc 退出insert，输入 :wq 回车，即可
     
     此时可以发现在项目目录下多了一个Podfile的文件，请注意这个文件必须与.xcodeproj在同一目录下。
-
 
     输入pod install 回车
 
