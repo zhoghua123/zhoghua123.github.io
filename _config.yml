@@ -18,7 +18,8 @@ weibo: 凉白开0072
 github: zhoghua123
 
 # avatar and Favicon
-avatar: https://raw.githubusercontent.com/zhoghua123/imgsBed/master/头像.jpg
+#avatar: https://raw.githubusercontent.com/zhoghua123/imgsBed/master/头像.jpg
+avatar: https://gitee.com/zhonghua123/blogimgs/raw/master/img/blogavatar.jpg
 favicon: http://7u2ho6.com1.z0.glb.clouddn.com/site-favicon.ico
 
 # disqus config
