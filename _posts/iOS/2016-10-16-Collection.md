@@ -59,11 +59,11 @@ description: CollectionView的详细使用
                 1. 同一行有不同的size的cell.由于高度不同,那么最小行间距就是本行最高的cell距离下一行最高cell的间距  
                 2. 同理,同一列有不同size的cell,由于宽度不同,那么最大列间距就是本列最宽cell距离下一列最宽cell的间距 
                     
-                    ![pic-w50](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/coll1.png) 
+                    ![pic-w50](https://gitee.com/zhonghua123/blogimgs/raw/master/img/coll1.png) 
             2. 情况2:
                 1. `cell`的`itemsize`已经设置固定,行间距再固定,那么界面排版就冲突,因此设置最小间距 
                     
-                    ![pic-w50](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/collection2.png) 
+                    ![pic-w50](https://gitee.com/zhonghua123/blogimgs/raw/master/img/collection2.png) 
     2. 其他属性
         
         ```
@@ -186,6 +186,6 @@ static NSString * const reuseIdentifier = @"Cell";
 ---
 **效果图如下**
 
-![pic-w50](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/collection1.gif) 
+![pic-w50](https://gitee.com/zhonghua123/blogimgs/raw/master/img/collection1.gif) 
 
 

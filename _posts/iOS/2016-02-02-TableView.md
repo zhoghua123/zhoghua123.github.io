@@ -25,14 +25,14 @@ description: UITableView
 ## 静态单元格操作步骤
 1. 创建一个SB(Storyboard),在sb中拖入一个UITableViewController
 2. 代码自定义一个继承自UITableViewController的控制器,并这这个类设置为SB中那个控制器的类,如下图:  
-    ![图1](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/tableView1.png)
+    ![图1](https://gitee.com/zhonghua123/blogimgs/raw/master/img/tableView1.png)
 3. 然后将tableView的cell类型设置为Static Cells。
- ![图2](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/tableView2.png)
+ ![图2](https://gitee.com/zhonghua123/blogimgs/raw/master/img/tableView2.png)
 4. 详细设置
     1. 点击tableView,可以设置类型(plain/group)
     2. 点击selection,可以设置该section下cell的行数row/header/footer标题 
     3. 点击cell可以设置cell的属性,以及搭建内部子控件
-    ![图2](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/tableView3.png)
+    ![图2](https://gitee.com/zhonghua123/blogimgs/raw/master/img/tableView3.png)
 5. 代码展示:
     1. 给SB中设置Storyboard ID 
     2. 代码加载
@@ -47,13 +47,13 @@ description: UITableView
         }
         ```
         
-        ![图2](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/tableView4.png)
+        ![图2](https://gitee.com/zhonghua123/blogimgs/raw/master/img/tableView4.png)
 
 
 ## 静态单元格的进阶使用
 1. 场景：
     1. 一个界面面很简单我想使用静态单元格，但是呢，这个界面上有一个按钮或者其他View是悬浮的，那么此时怎么办呢？   
-        ![图3](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/stasticx.png)
+        ![图3](https://gitee.com/zhonghua123/blogimgs/raw/master/img/stasticx.png)
     2. 一般的解决方法如下： 
         1. 方法一： 不使用静态单元格了，用纯代码，在一个viewController的View上添加一个tableview，按钮添加在VC的view上，这样可以实现效果了
             1. 缺点： 不能使用静态单元格了，比较麻烦

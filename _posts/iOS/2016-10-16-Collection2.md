@@ -255,5 +255,5 @@ static NSString * const reuseIdentifierFooter = @"footer";
 ```
 **效果图如下**
 
-![图4](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/coll4.gif)
+![图4](https://gitee.com/zhonghua123/blogimgs/raw/master/img/coll4.gif)
 

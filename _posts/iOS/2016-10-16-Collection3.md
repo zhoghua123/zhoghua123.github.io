@@ -404,6 +404,6 @@ description: CollectionView的详细使用
 
 效果图如下:
 
-![图5](https://raw.githubusercontent.com/zhoghua123/imgsBed/master/coll5.gif)
+![图5](https://gitee.com/zhonghua123/blogimgs/raw/master/img/coll5.gif)
 
 
