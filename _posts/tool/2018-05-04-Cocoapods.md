@@ -236,4 +236,4 @@ description: CocoaPods
                 
                 2 repos
                 ```
-
+4. 如何将项目的Podfile文件中的所有第三方依赖更新为最新版本？ 使用`pod update`命令

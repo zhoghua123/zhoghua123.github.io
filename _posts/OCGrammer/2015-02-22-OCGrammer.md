@@ -24,19 +24,18 @@ description: OC语法
 
 ## oc语法预览
 * 关键字
-    * 基本上oc所有的关键字都已@开头
-    * 举例   
+    * 基本上oc所有的关键字都以@开头 
      
-```
-@interface、@implementation、@end 
-@public、@protected、@private、@selector 
-@try、@catch、@throw、@finally  
-@protocol、@optional、@required、@class
-@property、@synthesize、@dynamic           
-非@开头的关键字:
-self、super、id、_cmd、__block、__strong、__weak、
-```
-
+    ```
+    //常见关键字
+    @interface、@implementation、@end 
+    @public、@protected、@private、@selector 
+    @try、@catch、@throw、@finally  
+    @protocol、@optional、@required、@class
+    @property、@synthesize、@dynamic           
+    非@开头的关键字:
+    self、super、id、_cmd、__block、__strong、__weak、
+    ```
 * 字符串
     * 字符串以@开头:`@"字符串"`
 * 数据类型
@@ -53,26 +52,25 @@ self、super、id、_cmd、__block、__strong、__weak、
 * NSLog与printf的区别   
     * NSLog接收OC字符串作为参数，printf接收C语言字符串作为参数
     * NSLog输出后会自动换行，printf输出后不会自动换行
-    * 使用NSLog需要#import <Foundation/Foundation.h>
-    * 使用printf需要#include <stdio.h>
+    * 使用NSLog需要`#import <Foundation/Foundation.h>`
+    * 使用printf需要`#include <stdio.h>`
 * **#import**的作用    
-    * 跟#include一样，用来拷贝某个文件的内容
+    * 跟`#include`一样，用来拷贝某个文件的内容
     * 可以自动防止文件内容被拷贝多次，也就是头文件中不用加入下面的预处理指令了  
     
       ```
-      #ifndef 	_STDIO_H_
-      #define	_STDIO_H_
+      #ifndef  _STDIO_H_
+      #define  _STDIO_H_
       #endif
       ```
 * BOOL的使用
     * BOOL类型的本质`typedef signed char BOOL;`
     * BOOL类型的变量有2种取值：YES、NO
     
-```
-#define YES (BOOL)1
-#define NO  (BOOL)0
-```
-
+    ```
+    #define YES (BOOL)1
+    #define NO  (BOOL)0
+    ```
 * 多.m文件开发
     * 编写3个文件:main.m/one.h/one.m 
     * 终端指令:
@@ -80,26 +78,24 @@ self、super、id、_cmd、__block、__strong、__weak、
         * 链接：cc main.o one.o –framework Foundation
         * 运行：./a.out
         
-```javascript
-main.m文件
+    ```
+    //main.m文件
+    
+    #import "one.h"
+    int main() {
+        test();
+        return 0;
+    }
+    
+    //one.h文件
+    void test();
 
-#import "one.h"
-int main()
-{
-    test();
-    return 0;
-}
-
-one.h文件
-void test();
-
-one.m文件
-#import <Foundation/Foundation.h>
-void test()
-{
-    NSLog(@"调用了test函数");
-}
-```
+    //one.m文件
+    #import <Foundation/Foundation.h>
+    void test() {
+        NSLog(@"调用了test函数");
+    }
+    ```
 
 
 
