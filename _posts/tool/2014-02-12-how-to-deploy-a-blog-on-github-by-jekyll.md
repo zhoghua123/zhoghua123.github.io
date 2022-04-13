@@ -238,7 +238,7 @@ title: 首页
 ### 方便的截图
 很多时候图片都是现截取的，比如用QQ的截图工具，或者系统的截图工具，但是他们截取完都存放在了`user/Pictures`里面，来回移动太累了。我这里介绍一个Mac下的一个工具——Trickster，看图
 
-![移动图片](http://7u2ho6.com1.z0.glb.clouddn.com/tech-trickster-move-picture.png)
+![移动图片](http://7u2ho6.com1.z0.glb.clouddn.com/tech-trickster-move-picture.png/)
 
 这个工具可以看到刚刚修改过的图片，而且还有一个收藏的文件夹，我每次截取完图以后，从左边往右边一拖，然后在markdown中就可以继续书写了。一点都不耗时。
 
